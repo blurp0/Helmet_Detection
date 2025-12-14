@@ -18,7 +18,7 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 MODEL = None
-MODEL_PATH = "C:/Users/Jomari/Desktop/Helmet_Detection/best.pt" # your detection model
+MODEL_PATH = "best.pt" # your detection model
   
 def load_model():
     global MODEL
