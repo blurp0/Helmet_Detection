@@ -1,0 +1,58 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="text-center">
+  <h2 class="mb-3">Realtime Demo</h2>
+  <p>
+    Select a camera below and click <strong>Start</strong>. Allow your browser
+    to use the camera.
+  </p>
+
+  <!-- Camera selection -->
+  <div class="mb-3 w-50 mx-auto">
+    <label for="videoSelect" class="form-label">Camera</label>
+    <select id="videoSelect" class="form-select"></select>
+  </div>
+
+  <!-- Video + overlay + spinner -->
+  <div
+    id="videoContainer"
+    class="realtime-wrapper mb-3 position-relative mx-auto border rounded shadow-sm"
+    style="width: 640px; height: 480px"
+  >
+    <!-- Spinner overlay -->
+    <div
+      id="spinnerOverlay"
+      class="position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+      style="display: none; background: rgba(0, 0, 0, 0.5); z-index: 10"
+    >
+      <div
+        id="spinnerborder"
+        class="spinner-border text-light"
+        role="status"
+        style="display: none"
+      >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
+
+    <video id="localVideo" autoplay playsinline class="w-100 h-100"></video>
+    <canvas
+      id="overlay"
+      class="position-absolute top-0 start-0 w-100 h-100"
+    ></canvas>
+  </div>
+
+  <!-- FPS display -->
+  <p class="fw-bold mt-2">FPS: <span id="fpsCounter">0</span></p>
+
+  <!-- Control buttons -->
+  <div class="d-flex justify-content-center gap-3 mt-3">
+    <button id="startBtn" class="btn btn-success btn-lg">Start</button>
+    <button id="stopBtn" class="btn btn-danger btn-lg" disabled>Stop</button>
+  </div>
+</div>
+
+<!-- Realtime JS -->
+<script src="/static/js/realtime.js"></script>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="text-center">
+  <h2 class="mb-3">Video Demo</h2>
+  <p>Upload a video and click <strong>Process Video</strong></p>
+
+  <form
+    id="videoForm"
+    action="/video"
+    method="POST"
+    enctype="multipart/form-data"
+    class="mb-4"
+  >
+    <div class="mb-3 w-50 mx-auto">
+      <label for="videoInput" class="form-label">Upload video</label>
+      <input
+        class="form-control"
+        type="file"
+        id="videoInput"
+        name="video"
+        accept="video/*"
+        required
+        onchange="previewVideo(event)"
+      />
+    </div>
+
+    <!-- Local preview of the selected video -->
+    <div class="mb-3 text-center">
+      <video
+        id="previewVideo"
+        controls
+        class="rounded shadow mx-auto"
+        style="display: none; max-width: 100%; max-height: 360px"
+      ></video>
+    </div>
+
+    <!-- Process Video Button -->
+    <button id="processBtn" type="submit" class="btn btn-primary btn-lg">
+      Process Video
+    </button>
+  </form>
+
+  <!-- Download link for processed video -->
+  {% if result_video %}
+  <div class="mb-3 text-center">
+    <a href="{{ result_video }}" download class="btn btn-success">
+      Download Processed Video
+    </a>
+  </div>
+  {% endif %}
+
+  <!-- Spinner Overlay -->
+  <div
+    id="loadingOverlay"
+    class="position-fixed top-0 start-0 w-100 h-100 d-none justify-content-center align-items-center"
+    style="background: rgba(0, 0, 0, 0.6); z-index: 1050"
+  >
+    <div class="text-center text-white">
+      <div
+        id="loadingSpinner"
+        class="spinner-border mb-3"
+        role="status"
+        style="width: 4rem; height: 4rem"
+      ></div>
+      <p id="loadingText" class="fw-bold">Processing video, please wait…</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Preview selected video locally
+  function previewVideo(event) {
+    const video = document.getElementById("previewVideo");
+    video.src = URL.createObjectURL(event.target.files[0]);
+    video.style.display = "block";
+  }
+
+  // Show spinner overlay when form is submitted
+  const form = document.getElementById("videoForm");
+  form.addEventListener("submit", () => {
+    const btn = document.getElementById("processBtn");
+    const overlay = document.getElementById("loadingOverlay");
+
+    btn.disabled = true;
+    btn.innerText = "Processing…";
+    overlay.classList.remove("d-none");
+    overlay.classList.add("d-flex");
+  });
+</script>
+
+{% endblock %}

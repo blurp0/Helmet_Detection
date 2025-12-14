@@ -1,0 +1,160 @@
+/* General layout */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f8f9fa; /* Bootstrap light gray */
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #343a40 !important; /* dark Bootstrap navbar */
+  padding: 15px 20px;
+}
+
+.navbar-brand {
+  color: #fff !important;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.navbar-nav .nav-link {
+  color: #ddd !important;
+  margin-right: 15px;
+  font-size: 17px;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #fff !important;
+  text-decoration: underline;
+}
+
+/* Page container */
+.container {
+  max-width: 900px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Headings */
+h1,
+h2 {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #0078ff;
+}
+
+/* Forms */
+input[type="file"],
+select {
+  margin: 15px 0;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+}
+
+button,
+.btn {
+  background: #0078ff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+button:hover,
+.btn:hover {
+  background: #005fcc;
+  color: #fff;
+}
+
+/* Preview area */
+.preview {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.preview img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+}
+
+/* Video & Realtime */
+video {
+  max-width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+.realtime-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 640px;
+  margin: auto;
+}
+
+#videoContainer {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin-bottom: 15px;
+}
+
+#localVideo {
+  width: 100%;
+  border-radius: 8px;
+  display: block;
+}
+
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Spinner & FPS */
+#spinnerOverlay {
+  display: none;
+}
+
+#fpsCounter {
+  font-weight: 600;
+  font-size: 16px;
+  margin-top: 5px;
+  text-align: center;
+  color: #0078ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 16px;
+  }
+
+  #videoContainer,
+  #localVideo,
+  #overlay {
+    width: 100%;
+    height: auto;
+  }
+}

@@ -1,0 +1,73 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container text-center">
+  <h2 class="mb-4">Picture Demo</h2>
+
+  <!-- Upload Form -->
+  <form
+    method="POST"
+    enctype="multipart/form-data"
+    id="uploadForm"
+    {%
+    if
+    result_image
+    %}style="display:none"
+    {%
+    endif
+    %}
+  >
+    <div class="mb-3 w-50 mx-auto">
+      <label for="image" class="form-label">Upload image</label>
+      <input
+        class="form-control"
+        type="file"
+        id="image"
+        name="image"
+        accept="image/*"
+        required
+        onchange="previewImage(event)"
+      />
+    </div>
+
+    <!-- Centered image preview -->
+    <div class="d-flex justify-content-center mb-3">
+      <img
+        id="previewImg"
+        class="img-fluid rounded shadow"
+        style="display: none; max-height: 400px"
+      />
+    </div>
+
+    <button class="btn btn-primary btn-lg">Detect</button>
+  </form>
+
+  {% if result_image %}
+  <!-- Detection Result -->
+  <h4 class="mt-4 mb-3">Detection Result</h4>
+
+  <div class="d-flex justify-content-center mb-3">
+    <img
+      src="{{ result_image }}"
+      class="img-fluid rounded shadow"
+      style="max-height: 400px"
+    />
+  </div>
+
+  <button class="btn btn-outline-secondary btn-lg" onclick="resetPictureDemo()">
+    Upload another image
+  </button>
+  {% endif %}
+</div>
+
+<script>
+  function previewImage(event) {
+    const img = document.getElementById("previewImg");
+    img.src = URL.createObjectURL(event.target.files[0]);
+    img.style.display = "block";
+  }
+
+  function resetPictureDemo() {
+    // Reload page cleanly (best approach)
+    window.location.href = "{{ url_for('picture') }}";
+  }
+</script>
+{% endblock %}
