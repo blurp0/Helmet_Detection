@@ -81,7 +81,7 @@ By default, Flask will run on `http://127.0.0.1:5000`.
 │   ├── js/
 │   │   └── realtime.js
 │   ├── css/
-│   └── uploads/           # Saved uploads and processed results
+├── uploads/           # Saved uploads and processed results
 ├── requirements.txt
 └── README.md
 ```
@@ -125,7 +125,7 @@ def detect_image_pil(pil_image):
 
 ---
 
-### 9. Best Practices
+### 9. Reccomendation
 
 - Test with a variety of lighting conditions and helmet colors for robust detection.
 - For multiple users or high-resolution cameras, consider using a dedicated GPU or optimizing the model with TensorRT or ONNX.
